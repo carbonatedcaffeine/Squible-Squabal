@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<head>
+    <title>Setup build environment</title> 
+    <link rel='stylesheet' href='nocolour.css' title='style1' media='screen' />
+    <link rel="shortcut icon" type="image/jpg" href="images/favicon.ico"/>
+    <div class="header-img"></div>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<style>
+p {
+  font-size: 20px;
+}
+h2 {
+  font-size: 40px;
+}
+</style>
+<body>
+<div class="topnav">
+    <a href="index-nocolour.html">Home</a>
+    <a href="installing-nocolour.html">Setup environment</a>
+    <a href="security-nocolour.html">Security</a>
+    <a href="history-nocolour.html">History</a>
+    <a href="index.html">Colour website</a>
+</div>
+  <div id="content">
+    <h2>Setting up Fuchsia environment</h2>
+      <h1>Prerequisites</h1>
+          <p class="basetext">
+            You should be running a Debian based distro such as Debian 10/11 or Ubuntu 18.04/20.04/21.04. Others might work, but not officially tested. 
+          </p>
+
+      <h1>Getting the source</h1>
+        <h3>1.</h3>
+          <p class="biggertext"> 
+            sudo apt-get install curl git unzip
+          </p>
+
+        <h3>2.</h3>
+          <p class="smallertext">
+            curl -s "https://fuchsia.googlesource.com/fuchsia/+/HEAD/scripts/bootstrap?format=TEXT" | base64 --decode | bash
+          </p>
+          <p class="basetext">
+            This command fetches the source code and creates the folder "fuchsia", this is where all your work should be done.
+          </p>
+
+        <h3>Adding Jiri to PATH</h3>
+          <p class="basetext">
+            Edit your .bashrc / .bash_profile file and add this line at the bottom
+          </p>
+          <p class="biggertext">export PATH=~/fuchsia/.jiri_root/bin:$PATH</p>
+      
+      <h1>Building</h1>
+        <h3>Introduction to the build config system</h3>
+          <p class="basetext">
+            Fuchsia has a build system which informs which board configurations and products (devices) to compile. You can check which products and boards are avalable from these two commands. 
+          </p>
+          <p class="biggertext">fx list-boards</p>
+          <p class="basetext">and</p>
+          <p class="biggertext">fx list-products</p>
+
+        <h3>Setting your build config</h3>
+          <p class="basetext">
+            Next you need to set your build config, the most common one is core.x64 which gives you a console only. workstation.x64 gives you a GUI but only certain graphics are supported. 
+          </p>
+          <p class="biggertext">fx set core.x64</p>
+          <p class="basetext">or</p>
+          <p class="biggertext">fx set workstation.x64</p>
+          <p class="basetext">You may also include optimisations for recompiling, add --ccache at the end of your build config command.</p>
+          <p class="basetext">
+            There is support for arm64, but there are only a few supported devices in that space such as the Vim2/3, check the main documention (https://fuchsia.dev) for more information.
+          </p>
+
+        <h3>Building Fuchsia</h3>
+          <p class="basetext">Building is pretty straight forward.</p>
+          <p class="biggertext">fx build
+          </p>
+
+        <h3>Setup KVM for the Fuchsia emulator (make sure you're using workstation)</h3>
+          <p class="basetext">You'll want to enable KVM, this enables virtual machine acceleration. The first command adds your user to the KVM group.</p>
+          <p class="biggertext">sudo usermod -a -G kvm ${USER}</p>
+          <p class="basetext">Once you've done that, log out and in again to make sure the changes have been made. After that make sure KVM is configured correctly</p>
+          <p class="smallertext">if [[ -r /dev/kvm ]] && grep '^flags' /proc/cpuinfo | grep -qE 'vmx|svm'; then echo 'KVM is working'; else echo 'KVM not working'; fi</p>
+          <p class="basetext">You can confirm KVM is working if you get "KVM is working" back. If you get "KVM not working", you might need to reboot your machine for the permissions to take effect.</p>
+
+        <h3>Start the emulator</h3>
+          <p class="basetext">This command below starts the emulator with networking support, and gives it access to external networks.</p>
+          <p class="smallertext">fx vdl start -N -u FUCHSIA_ROOT/scripts/start-unsecure-internet.sh</p>
+          <p class="basetext">Replace FUCHSIA_ROOT with the path of your "fuchsia" directory (for example, ~/fuchsia)</p>
+        
+        <h3>Play with Fuchsia</h3>
+          <p class="basetext">"ffx is a host tool for Fuchsia target workflows that provides the consistent development experience across all Fuchsia environments and host platforms." The following commands below are some the ffx command examples.</p>
+          <p class="basetext">Display the list of devices:</p>
+          <p class="biggertext">ffx target list</p>
+          <p class="basetext">Display device information:</p>
+          <p class="biggertext">ffx target show</p>
+          <p class="basetext">Print the device logs:</p>
+          <p class="biggertext">ffx target log watch</p>
+          <p class="basetext">Reboot the device:</p>
+          <p class="biggertext">ffx target reboot</p>
+</div> <!--content-->
+<div class="footer">
+  <p>Camden's Website</p>
+</div>
+</body>

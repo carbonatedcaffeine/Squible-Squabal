@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<head>
+<title>FuchsiaOS Security</title> 
+<link rel='stylesheet' href='nocolour.css' title='style1' media='screen' />
+<link rel="shortcut icon" type="image/png" href="images/favicon.ico"/>
+<div class="header-img"></div>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<style>
+p {
+  font-size: 20px;
+}
+h2 {
+  font-size: 40px;
+}
+</style>
+<body>
+<div class="topnav">
+    <a href="index-nocolour.html">Home</a>
+    <a href="installing-nocolour.html">Setup environment</a>
+    <a href="security-nocolour.html">Security</a>
+    <a href="history-nocolour.html">History</a>
+    <a href="index.html">Colour website</a>
+</div>
+<div id="content">
+  <h2>Fuchsia security</h2>
+    <p>The kernel isolates processes by default, and grants permissions and hardware resources explicitly. The kernel also passes permissions and resources by handles rather than name, which “leads to a system that only grants software access to what it needs”.</p>
+    <p>Nearly all software running in the userspace on Fuchsia is a component. These are from system services, to end user software. “The component framework encourages the composition of loosely coupled software. The capabilities/permissions used must be “explicitly” declared.</p>
+    <p>Packages come with all the files needed to run them, “packages are a collection of components, files and metadata” and are isolated from each other and only “has visibility to it’s own package”. </p>
+    <p>"Fuchsia aims to have no ambient authority, which means every operation is scoped to an object capability. Similarly, Fuchsia has no global file system. Instead, each program is given its own local namespace in which to operate."</p>
+</div> <!--content-->
+<div class="footer">
+    <p>Camden's Website</p>
+</div>
+</body>

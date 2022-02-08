@@ -1,0 +1,80 @@
+body {
+    background-color: orange;
+    font-family: Verdana, Arial, sans-serif;
+    font-size: small;
+    margin: 0;
+    padding: 0;
+}
+.body-img {
+    float: right;
+    margin: 50px 20px 0 5px;
+    border: 5px solid red;
+}
+
+#container {
+    background-color: yellow;
+    width: 768px;
+    margin: auto;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+    padding: 0;
+}
+
+#header {
+    margin: auto;
+    width: 768px;
+    height: 128px;
+}
+
+#content {
+    background-color: green;
+    margin: 0;
+    width: 100px;
+    float: left;
+    border-right: 3px solid black;
+    padding: 10px 40px 10px 20px;
+}
+
+#navigation {
+    background-color: yellow;
+    padding: 10px 10px 10px 10px;
+    margin: 0;
+    float: right;
+    width: 175px;
+    height: 100%;
+    border: 1px solid black;
+}
+
+#footer {
+    clear: both;
+    background-color: grey;
+    padding: 10px 20px;
+    margin: 0;
+    font-size: 85%;
+    font-weight: bold;
+}
+
+table {
+    width: 250px;
+    margin: 5px 0 0 50px;
+    border-spacing: 10px 5px;
+}
+
+th {
+    font-weight: bold;
+    border-bottom: 1px dashed black;
+}
+
+td {
+    vertical-align: top;
+}
+
+.seasoncol {
+    width: 20%;
+    text-align: left;
+}
+
+.datescol {
+    width: 40%;
+    text-align: left;
+}

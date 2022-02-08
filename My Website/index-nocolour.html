@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<head>
+<title> FuchsiaOS Features </title> 
+<link rel='stylesheet' href='nocolour.css' title='style1' media='screen' />
+<link rel="shortcut icon" type="image/jpg" href="images/favicon.ico"/>
+<div class="header-img"></div>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<style>
+p {
+  font-size: 20px;
+}
+
+h2 {
+  font-size: 40px;
+}
+img {
+  border-radius: 8px;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+</style>
+<body>
+  <div class="topnav">
+    <a href="index-nocolour.html">Home</a>
+    <a href="installing-nocolour.html">Setup environment</a>
+    <a href="security-nocolour.html">Security</a>
+    <a href="history-nocolour.html">History</a>
+    <a href="index.html">Colour website</a>
+  </div>
+  <div id="content">
+      <h2>Fuchsia OS introduction</h2>
+        <p>Google Fuchsia is an independent opensource operating system derived from LittleKernel. Fuchsia’s kernel based upon LK is called Zircon. Both kernels are a kind of kernel called a microkernel. Microkernels run the “minimum amount of software that can provide the mechanisms needed to implement an operating system.” </p>
+        <p>Zircon runs drivers inside the userspace so they have the least privilege they need to do their job, devices such as ethernet and USB drivers only have certain permissions to harden security. Zircon is much larger than a microkernel so in technical terms it’s not actually a microkernel. “… Fuchsia applies many of the concepts popularized by microkernels… does not strive for minimality … Fuchsia has over 170 syscalls, which is vastly more than that of a typical microkernel. Instead of minimality … guided by practical concerns about security, privacy, and performance.”</p>
+        <img src="images/Emulator.png" alt="Paris">
+        <p class="smallbasetext">Fuchsia emulator running the development UI Emine. </p>
+  </div> <!--content-->
+  <div class="footer">
+        <p>Camden's Website</p>
+  </div>
+</body>
+
