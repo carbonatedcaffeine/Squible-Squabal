@@ -19,7 +19,7 @@ def append_name():
 
 def main():
     Button(main_window, text="Quit",command=quit) .grid(column=1, row=0)
-    Button(main_window, text="Append Name",command=append_name) .grid(column=0,row=1)
+    Button(main_window, text="Append details",command=append_name) .grid(column=0,row=1)
     Button(main_window, text="Print Names",command=print_names) .grid(column=1,row=1)
 #    Button(main_window, text="Test") .grid(column=2,row=1)
     Label(main_window, text="Name") .grid(column=0,row=2)
@@ -30,5 +30,7 @@ j_names = []
 main_window =Tk()
 entry_name = Entry(main_window)
 entry_name.grid(column=1,row=2)
+entry_game = Entry(main_window)
+entry_game.grid(column=1,row=3)
 
 main()
