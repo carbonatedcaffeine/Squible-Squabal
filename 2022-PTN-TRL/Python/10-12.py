@@ -6,10 +6,6 @@ def main(): # Run the program
     pack_window()
     main_window.mainloop()
 
-# Deprecated def
-#def quit(): 
-#   main_window.destroy()
-
 #def append_list():
 
 def pack_window(): # Fills the window with buttons, labels and text entries
