@@ -17,7 +17,9 @@ def append_list():
 
 def print_variables():
     name_count = 0
+    receipt_count = 0
     Label(main_window, font='bold',text="Name").grid(column=0,row=5)
+    Label(main_window, font='bold',text="Receipt num").grid(column=0,row=6)
     ROWS_ABOVE = 3
     while name_count < number['total_entries']:
         Label(main_window, text=(j_names[name_count])).grid(column=0,row=6 + ROWS_ABOVE)
