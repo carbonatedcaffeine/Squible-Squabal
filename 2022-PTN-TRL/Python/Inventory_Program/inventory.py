@@ -10,20 +10,24 @@ def main(): # Run the program
 def append_list():
     if len(entry_client_name.get())!= 0 :
         j_names.append(entry_client_name.get())
-        number['total_names'] += 1
-    if len(entry_client_receipt.get())!= 0 :
-        j_names.append(entry_client_receipt.get())
-        number['total_receipt_numbers'] += 1
+        number_names['total_names'] += 1
+    if int(entry_receipt_number.get())!= 0 :
+        j_names.append(entry_receipt_number.get())
+        number_receipts['total_receipt_number'] += 1
 
 def print_variables():
     name_count = 0
     receipt_count = 0
     Label(main_window, font='bold',text="Name").grid(column=0,row=5)
-    Label(main_window, font='bold',text="Receipt num").grid(column=0,row=6)
+    Label(main_window, font='bold',text="Receipt num").grid(column=1,row=5)
     ROWS_ABOVE = 3
-    while name_count < number['total_entries']:
+    while name_count < number_names['total_names']:
         Label(main_window, text=(j_names[name_count])).grid(column=0,row=6 + ROWS_ABOVE)
         name_count += 1
+    while receipt_count < number_receipts['total_receipt_number']:
+        Label(main_window, text=(j_receipts[receipt_count])).grid(column=2,row=6 + ROWS_ABOVE)
+        receipt_count += 1
+    
 
 def pack_window(): # Fills the window with buttons, labels and text entries
 #   Label(main_window, text="LOLOLOLOL") .grid(column=1,row=0)  #Deprecated test string
@@ -39,8 +43,10 @@ def pack_window(): # Fills the window with buttons, labels and text entries
 
 
 
-number = {'total_entries':0}
+number_names = {'total_names':0}
+number_receipts = {'total_receipt_number':0}
 j_names = []
+j_receipts = []
 
 
 main_window = Tk()
