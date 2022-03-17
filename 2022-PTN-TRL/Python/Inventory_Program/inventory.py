@@ -12,7 +12,7 @@ def append_list():
         j_names.append(entry_client_name.get())
         number_names['total_names'] += 1
     if int(entry_receipt_number.get())!= 0 :
-        j_names.append(entry_receipt_number.get())
+        j_receipts.append(entry_receipt_number.get())
         number_receipts['total_receipt_number'] += 1
 
 def print_variables():
@@ -20,12 +20,13 @@ def print_variables():
     receipt_count = 0
     Label(main_window, font='bold',text="Name").grid(column=0,row=5)
     Label(main_window, font='bold',text="Receipt num").grid(column=1,row=5)
+    Label(main_window, font='bold',text="Item number").grid(column=2,row=5)
     ROWS_ABOVE = 3
     while name_count < number_names['total_names']:
         Label(main_window, text=(j_names[name_count])).grid(column=0,row=6 + ROWS_ABOVE)
         name_count += 1
     while receipt_count < number_receipts['total_receipt_number']:
-        Label(main_window, text=(j_receipts[receipt_count])).grid(column=2,row=6 + ROWS_ABOVE)
+        Label(main_window, text=(j_receipts[receipt_count])).grid(column=1,row=6 + ROWS_ABOVE)
         receipt_count += 1
     
 
@@ -40,8 +41,6 @@ def pack_window(): # Fills the window with buttons, labels and text entries
     Label(main_window, text="Item code") .place(x=148,y=50)
     Label(main_window, text="Quantity of item").place(x=115,y=75)
     Label(main_window, text="Quantity of item").place(x=115,y=75)
-
-
 
 number_names = {'total_names':0}
 number_receipts = {'total_receipt_number':0}
