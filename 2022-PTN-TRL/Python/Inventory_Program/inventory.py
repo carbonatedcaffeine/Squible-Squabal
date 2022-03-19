@@ -1,4 +1,5 @@
 # Camden Bruce
+from curses.ascii import isdigit
 from tkinter import *
 
 def main(): # Run the program
@@ -54,6 +55,9 @@ def pack_window(): # Fills the window with buttons, labels and text entries
     Label(main_window, font='bold',text="  Receipt num  ").grid(column=2,row=5)
     Label(main_window, font='bold',text="  Item code  ").grid(column=4,row=5)
     Label(main_window, font='bold',text="  Item quantity  ").grid(column=6,row=5)
+
+#def error_correction():
+
 
 number_names = {'total_names':0}
 number_receipts = {'total_receipt_numbers':0}
