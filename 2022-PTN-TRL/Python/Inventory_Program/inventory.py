@@ -1,4 +1,5 @@
 # Camden Bruce
+import curses
 from curses.ascii import isdigit
 from tkinter import *
 
@@ -57,13 +58,16 @@ def pack_window(): # Fills the window with buttons, labels and text entries
     Label(main_window, font='bold',text="  Item quantity  ").grid(column=6,row=5)
 
 #def error_correction():
+#    if len(entry_client_name.get()) != 0 and entry_client_name.get().isdigit() and len 
 
 
 number_names = {'total_names':0}
-number_receipts = {'total_receipt_numbers':0}
+number_receipts = {'total_receipt_numbers':0}  
 number_item_codes = {'total_item_codes':0}
 number_item_quantity = {'total_item_quantity':0}
 
+plu_numbers = [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000]
+plu_conversions = ["Spoons", "Forks", "Plates", "Knifes", "Teaspoons", "Pots", "Pans", "Bowls", "Cups", "Mugs"]
 j_names = []
 j_receipts = []
 j_item_codes = []
