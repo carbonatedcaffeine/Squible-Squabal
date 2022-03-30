@@ -44,7 +44,7 @@ def print_variables():
 def pack_window(): # Fills the window with buttons, labels and text entries
 #   Label(main_window, text="LOLOLOLOL") .grid(column=1,row=0)  #Deprecated test string
     Button(main_window, text="Quit",command=main_window.destroy, width=8, bg='#FF605C', fg='white') .grid(column=0,row=0)
-    Button(main_window, text="Append list",command=append_list, width=8, height=6, bg='#FFBD44', fg='white') .grid(column=0,row=1)
+    Button(main_window, text="Append list",command=error_correction, width=8, height=6, bg='#FFBD44', fg='white') .grid(column=0,row=1)
     Button(main_window, text="Print list",command=print_variables, width=8, height=2, bg='#61BB46', fg='white') .grid(column=0,row=2)
     Button(main_window, text="Delete row", width=8, height=2, bg='#51A0D5', fg='white') .grid(column=0,row=4)
     Label(main_window, text="Name") .place(x=170,y=0)
@@ -57,19 +57,28 @@ def pack_window(): # Fills the window with buttons, labels and text entries
     Label(main_window, font='bold',text="  Receipt num  ").grid(column=2,row=5)
     Label(main_window, font='bold',text="  Item code  ").grid(column=4,row=5)
     Label(main_window, font='bold',text="  Item quantity  ").grid(column=6,row=5)
+    Label(main_window, font='bold',text="  Row  ").grid(column=8,row=5)
+
 #   Label(main_window, font='bold',text="Row").grid(column=1,row=4)
 
-#def error_correction():
-#    if len(entry_client_name.get()) ==0:
-#        print("ERR")
-#    
-#    if len(entry_client_name.get()).isdigit():
-#        print("ERR")
+def error_correction():
+    error_check_failures = 0
+    Label(main_window, font='bold', fg='black', text="  Name  ").grid(column=0,row=5)
+    Label(main_window, font='bold', fg='black', text="  Receipt num  ").grid(column=2,row=5)
+    Label(main_window, font='bold', fg='black', text="  Item code  ").grid(column=4,row=5)
+    Label(main_window, font='bold', fg='black', text="  Item quantity  ").grid(column=6,row=5)
+    Label(main_window, font='bold', fg='black', text="  Row  ").grid(column=8,row=5)
+    
+    if len(entry_client_name.get()) == 0:
+        Label(main_window, font='bold', fg='red', text="  Name  ").grid(column=0,row=5)
+        error_check_failures + 1
+    
+    else:
+        append_list()
+        
 
 #def delete_row():
-
-
-
+    
 number_names = {'total_names':0}
 number_receipts = {'total_receipt_numbers':0}  
 number_item_codes = {'total_item_codes':0}
