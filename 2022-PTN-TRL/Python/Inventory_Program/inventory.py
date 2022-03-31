@@ -3,6 +3,8 @@ from ast import While
 import curses
 from curses.ascii import isdigit
 from tkinter import *
+from tkinter import messagebox
+
 
 def main(): # Run the program
     pack_window()
@@ -71,7 +73,10 @@ def error_correction():
     
     if len(entry_client_name.get()) == 0:
         Label(main_window, font='bold', fg='red', text="  Name  ").grid(column=0,row=5)
-        error_check_failures + 1
+        error_check_failures += 1
+    
+    if error_check_failures >= 1:
+        messagebox.showerror('Python Error', 'Error: This is an Error Message!')
     
     else:
         append_list()
