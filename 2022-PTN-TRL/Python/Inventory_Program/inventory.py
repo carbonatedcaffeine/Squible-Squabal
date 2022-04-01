@@ -41,7 +41,7 @@ def print_variables():
         item_code_count += 1
     while item_quantity_count < number_item_quantity['total_item_quantity']:
         Label(main_window, text=(j_item_quantity[item_quantity_count])).grid(column=6,row=6+item_quantity_count + ROWS_ABOVE)
-        item_quantity_count += 1    
+        item_quantity_count += 1
 
 def pack_window(): # Fills the window with buttons, labels and text entries
 #   Label(main_window, text="LOLOLOLOL") .grid(column=1,row=0)  #Deprecated test string
@@ -64,24 +64,36 @@ def pack_window(): # Fills the window with buttons, labels and text entries
 #   Label(main_window, font='bold',text="Row").grid(column=1,row=4)
 
 def error_correction():
-    error_check_failures = 0
+#    error_check_failures = 0
     Label(main_window, font='bold', fg='black', text="  Name  ").grid(column=0,row=5)
     Label(main_window, font='bold', fg='black', text="  Receipt num  ").grid(column=2,row=5)
     Label(main_window, font='bold', fg='black', text="  Item code  ").grid(column=4,row=5)
     Label(main_window, font='bold', fg='black', text="  Item quantity  ").grid(column=6,row=5)
     Label(main_window, font='bold', fg='black', text="  Row  ").grid(column=8,row=5)
     
-    if len(entry_client_name.get()) == 0:
-        Label(main_window, font='bold', fg='red', text="  Name  ").grid(column=0,row=5)
-        error_check_failures += 1
-    
-    if error_check_failures >= 1:
-        messagebox.showerror('Python Error', 'Error: This is an Error Message!')
-    
+    if len(entry_client_name.get()) !=0 and int(entry_receipt_number.get()) !=0 and int(entry_item_code.get()) !=0 and int(entry_item_quantity.get())  !=0 and entry_receipt_number.get().isdigit() and entry_item_code.get().isdigit and entry_item_quantity.get().isdigit:
+       append_list()
     else:
-        append_list()
+        if len(entry_client_name.get()) == 0:
+#            error_check_failures += 1
+            Label(main_window, font='bold', fg='red', text="  Name  ").grid(column=0,row=5)
+            messagebox.showerror('Inventory program error', 'Error: Missing input in box "Name"')
         
+        if entry_receipt_number.get() == 0:
+#            error_check_failures += 1
+            Label(main_window, font='bold', fg='red', text="  Receipt num  ").grid(column=2,row=5)
+            messagebox.showerror('Inventory program error', 'Error: Missing input in box "Receipt number"')
 
+        if entry_item_code.get() == 0:
+#            error_check_failures += 1
+            Label(main_window, font='bold', fg='red', text="  Item code  ").grid(column=4,row=5)
+            messagebox.showerror('Inventory program error', 'Error: Missing input in box "Item code"')
+
+        if entry_item_quantity.get() == 0:
+#            error_check_failures += 1
+            Label(main_window, font='bold', fg='red', text="  Item quantity  ").grid(column=6,row=5)
+            messagebox.showerror('Inventory program error', 'Error: Missing input in box "Item quantity"')
+        
 #def delete_row():
     
 number_names = {'total_names':0}
