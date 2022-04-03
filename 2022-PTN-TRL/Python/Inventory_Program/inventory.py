@@ -1,11 +1,6 @@
 # Camden Bruce
-from ast import While
-import curses
-from curses.ascii import isdigit
 from tkinter import *
 from tkinter import messagebox
-
-
 def main(): # Run the program
     pack_window()
     main_window.mainloop()
@@ -62,53 +57,41 @@ def pack_window(): # Fills the window with buttons, labels and text entries
     Label(main_window, font='bold',text="  Row  ").grid(column=8,row=5)
 
 def error_correction():
-    error_check_failures = 0
-    Label(main_window, font='bold', fg='black', text="  Name  ").grid(column=0,row=5)
-    Label(main_window, font='bold', fg='black', text="  Receipt num  ").grid(column=2,row=5)
-    Label(main_window, font='bold', fg='black', text="  Item code  ").grid(column=4,row=5)
-    Label(main_window, font='bold', fg='black', text="  Item quantity  ").grid(column=6,row=5)
-    Label(main_window, font='bold', fg='black', text="  Row  ").grid(column=8,row=5)
-    
-    if len(entry_client_name.get()) !=0 and entry_receipt_number.get() !=0 and entry_item_code.get() !=0 and entry_item_quantity.get() !=0:
-        print("INFO: first error check passed")
-        if (entry_receipt_number.get().isdigit()) and (entry_item_code.get().isdigit()) and (entry_item_quantity.get().isdigit()):
-            print("INFO: second error check passed")
-            append_list()
-        
+    missing_inputs = 0
+    non_int_inputs = 0
+    Label(main_window, fg='black', text="Name") .place(x=170,y=0)
+    Label(main_window, fg='black', text="Receipt number") .place(x=118,y=25)
+    Label(main_window, fg='black', text="Item code") .place(x=148,y=50)
+    Label(main_window, fg='black', text="Quantity of item").place(x=115,y=75)
+
+    if str(entry_receipt_number.get()).isdigit() == False: #and len(entry_receipt_number.get()) !=0:
+        non_int_inputs = 1
+        Label(main_window, fg='red', text="Receipt number") .place(x=118,y=25)
+    if str(entry_item_code.get()).isdigit() == False: # and len(entry_item_code.get()) !=0:
+        non_int_inputs = 1
+        Label(main_window, fg='red', text="Item code") .place(x=148,y=50)
+    if str(entry_item_quantity.get()).isdigit() == False: # and len(entry_item_quantity.get()) !=0:
+        non_int_inputs = 1
+        Label(main_window, fg='red', text="Quantity of item").place(x=115,y=75)
+
+    if len(entry_client_name.get()) == 0:
+        missing_inputs = 1
+        Label(main_window, fg='red', text="Name") .place(x=170,y=0)
+    if len(entry_receipt_number.get()) == 0:
+        missing_inputs = 1
+        Label(main_window, fg='red', text="Receipt number") .place(x=118,y=25)
+    if len(entry_item_code.get()) == 0:
+        missing_inputs = 1
+        Label(main_window, fg='red', text="Item code") .place(x=148,y=50)
+    if len(entry_item_quantity.get()) == 0:
+        missing_inputs = 1
+        Label(main_window, fg='red', text="Quantity of item").place(x=115,y=75)
+    if missing_inputs == 1:
+        messagebox.showerror('Inventory program error', 'Error: missing input')
+    if non_int_inputs == 1:
+        messagebox.showerror('Inventory program error', 'Error: non integer input')
     else:
-        if len(entry_client_name.get()) == 0:
-            error_check_failures = 1
-            Label(main_window, font='bold', fg='red', text="  Name  ").grid(column=0,row=5)
-            messagebox.showerror('Python Error', 'Error: This is an Error Message!')
-        
-        if  (entry_receipt_number.get()) == 0:
-            error_check_failures = 1
-            Label(main_window, font='bold', fg='red', text="  Receipt num  ").grid(column=2,row=5)
-            messagebox.showerror('Python Error', 'Error: This is an Error Message!')
-
-        if  (entry_item_code.get()) == 0:
-            error_check_failures = 1
-            Label(main_window, font='bold', fg='red', text="  Item code  ").grid(column=4,row=5)
-            messagebox.showerror('Python Error', 'Error: This is an Error Message!')
-
-        if  (entry_item_quantity.get()) == 0:
-            error_check_failures = 1
-            Label(main_window, font='bold', fg='red', text="  Item quantity  ").grid(column=6,row=5)
-            messagebox.showerror('Python Error', 'Error: This is an Error Message!')
-        else:
-            if error_check_failures == 1:
-                print("ERROR: ", error_check_failures, "input blank, add info to this box to append" )
-            if error_check_failures > 1:
-                print("ERROR: ", error_check_failures, "inputs blank, add info to this box to append" )
-        
-
-                
-
-
-           
-        
-        
-        
+        append_list()
 #def delete_row():
     
 number_names = {'total_names':0}
