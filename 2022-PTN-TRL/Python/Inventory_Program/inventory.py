@@ -18,6 +18,10 @@ def append_list():
         j_item_quantity.append(entry_item_quantity.get())
         number_item_quantity['total_item_quantity'] += 1
         print("INFO: appending list finished successfully")
+        entry_client_name.delete(0,'end')
+        entry_receipt_number.delete(0,'end')
+        entry_item_code.delete(0,'end')
+        entry_item_quantity.delete(0,'end')
 
 def print_variables():
     name_count = 0
@@ -66,13 +70,13 @@ def error_correction():
 
     if str(entry_receipt_number.get()).isdigit() == False: #and len(entry_receipt_number.get()) !=0:
         non_int_inputs = 1
-        Label(main_window, fg='red', text="Receipt number") .place(x=118,y=25)
+        Label(main_window, fg='green', text="Receipt number") .place(x=118,y=25)
     if str(entry_item_code.get()).isdigit() == False: # and len(entry_item_code.get()) !=0:
         non_int_inputs = 1
-        Label(main_window, fg='red', text="Item code") .place(x=148,y=50)
+        Label(main_window, fg='green', text="Item code") .place(x=148,y=50)
     if str(entry_item_quantity.get()).isdigit() == False: # and len(entry_item_quantity.get()) !=0:
         non_int_inputs = 1
-        Label(main_window, fg='red', text="Quantity of item").place(x=115,y=75)
+        Label(main_window, fg='green', text="Quantity of item").place(x=115,y=75)
 
     if len(entry_client_name.get()) == 0:
         missing_inputs = 1
@@ -87,9 +91,9 @@ def error_correction():
         missing_inputs = 1
         Label(main_window, fg='red', text="Quantity of item").place(x=115,y=75)
     if missing_inputs == 1:
-        messagebox.showerror('Inventory program error', 'Error: missing input')
+        messagebox.showerror('Inventory program error', 'Error: missing input. Errors highlighed in red')
     if non_int_inputs == 1:
-        messagebox.showerror('Inventory program error', 'Error: non integer input')
+        messagebox.showerror('Inventory program error', 'Error: non integer input. Errors highlighted in green')
     else:
         append_list()
 #def delete_row():
