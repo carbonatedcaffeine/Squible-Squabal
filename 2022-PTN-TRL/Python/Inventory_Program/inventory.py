@@ -78,15 +78,16 @@ def error_correction():
     else:
         append_list()
 def delete_row():
-    del inventory_details[int(delete_row.get())]
+    del inventory_details[int(entry_row_number.get())]
     counters['total_entries'] -= 1
     name_count = counters['name_count']
-    delete_row.delete(0,'end')
-    Label(main_window, text="        ").grid(column=2,row=name_count+7) 
-    Label(main_window, text="        ").grid(column=4,row=name_count+7)
-    Label(main_window, text="        ").grid(column=6,row=name_count+7)
-    Label(main_window, text="        ").grid(column=8,row=name_count+7)
-    Label(main_window, text="        ").grid(column=10,row=name_count+7)
+    entry_row_number.delete(0,'end')
+    Label(main_window, text="                           ").grid(column=2,row=name_count+7) 
+    Label(main_window, text="                           ").grid(column=4,row=name_count+7)
+    Label(main_window, text="                           ").grid(column=6,row=name_count+7)
+    Label(main_window, text="                           ").grid(column=8,row=name_count+7)
+    Label(main_window, text="                           ").grid(column=10,row=name_count+7)
+    print_variables()
 
 counters = {'total_entries':0,'name_count':0}
 inventory_details = []
