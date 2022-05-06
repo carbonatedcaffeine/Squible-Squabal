@@ -1,12 +1,12 @@
-# Camden Bruce
-from cgitb import text
+# Camden Bruce 2022
 from tkinter import *
 from tkinter import messagebox
-def main(): # Run the program
+def main(): # Pack the window with buttons and display the window.
     pack_window()
     main_window.mainloop()
 
 def print_variables():
+    # Prints the variables that were appended to the list of inputs.
     name_count = 0
     while name_count < counters['total_entries'] :
         Label(main_window, text=name_count).grid(column=10,row=name_count+8)
@@ -18,6 +18,7 @@ def print_variables():
         counters['name_count'] = name_count
 
 def append_list():
+        # If inputs pass the error_correction test it will append each input to a list. Places 0, 1, 2, 3 respectively.
         inventory_details.append([entry_client_name.get(),entry_receipt_number.get(),entry_item_code.get(),entry_item_quantity.get()])
         entry_client_name.delete(0,'end')
         entry_receipt_number.delete(0,'end')
@@ -43,6 +44,7 @@ def pack_window(): # Fills the window with buttons, labels and text entries
     Label(main_window, font='bold',text="  Row").grid(column=10,row=5)
 
 def error_correction():
+    # Initialize error count to 0 and refresh text box labels to default colour (black).
     missing_inputs = 0
     non_int_inputs = 0
     Label(main_window, fg='black', text="Name") .place(x=170,y=0)
@@ -50,6 +52,8 @@ def error_correction():
     Label(main_window, fg='black', text="Item code") .place(x=148,y=50)
     Label(main_window, fg='black', text="Quantity of item").place(x=115,y=75)
 
+
+    # If an integer input has a alphabet character prompt an errorbox and mark input box green. 
     if str(entry_receipt_number.get()).isdigit() == False:
         non_int_inputs = 1
         Label(main_window, fg='green', text="Receipt number") .place(x=118,y=25)
@@ -59,6 +63,8 @@ def error_correction():
     if str(entry_item_quantity.get()).isdigit() == False:
         non_int_inputs = 1
         Label(main_window, fg='green', text="Quantity of item").place(x=115,y=75)
+    
+    # If the length of the string of an input is 0, or in simpler terms if there is nothing in an input box then prompt an errorbox and mark input box red.
     if len(entry_client_name.get()) == 0:
         missing_inputs = 1
         Label(main_window, fg='red', text="Name") .place(x=170,y=0)
@@ -71,6 +77,8 @@ def error_correction():
     if len(entry_item_quantity.get()) == 0:
         missing_inputs = 1
         Label(main_window, fg='red', text="Quantity of item").place(x=115,y=75)
+    # If an error is found through the check it will prompt one of these error boxes. 
+    # It will mark a different colour according to the error type.
     if missing_inputs == 1:
         messagebox.showerror('Inventory program error', 'Error: missing input. Errors highlighed in red')
     if non_int_inputs == 1:
@@ -78,6 +86,8 @@ def error_correction():
     else:
         append_list()
 def delete_row():
+    # Delete a row from an integer input, row numbers start from 0. Then labels are wiped with spaces, which isn't very efficient.
+    # But to be fair i'm not entirely sure how else to do it.
     del inventory_details[int(entry_row_number.get())]
     counters['total_entries'] -= 1
     name_count = counters['name_count']
@@ -89,13 +99,10 @@ def delete_row():
     Label(main_window, text="                           ").grid(column=10,row=name_count+7)
     print_variables()
 
+# Initialize input boxes, tk window elements and optional window geometry.
+# Uncomment window geometry and resizable options for the older interface size (deprecated). 
 counters = {'total_entries':0,'name_count':0}
 inventory_details = []
-j_names = []
-j_receipts = []
-j_item_codes = []
-j_item_quantity = []
-
 main_window = Tk()
 main_window.title('Stock inventory')
 #main_window.geometry('600x300')
@@ -111,4 +118,5 @@ entry_item_quantity.place(x=220,y=75)
 entry_row_number = Entry(main_window, width=3)
 entry_row_number.grid(column=1,row=4)
 
+# Run the program
 main()
