@@ -2,6 +2,7 @@
 from tkinter import *
 from tkinter import messagebox
 def main(): # Pack the window with buttons and display the window.
+    messagebox.showinfo("Useful information", "A heads up that a receipt number should have 7 digits, a PLU code is 4 digits and the maximum number for an order quantity is 999. Thank You!")
     pack_window()
     main_window.mainloop()
 
@@ -16,6 +17,7 @@ def print_variables():
         Label(main_window, text=(inventory_details[name_count][3])).grid(column=8,row=name_count+8)
         name_count += 1
         counters['name_count'] = name_count
+        print("INFO: Variables printed successfully")
 
 def append_list():
         # If inputs pass the error_correction test it will append each input to a list. Places 0, 1, 2, 3 respectively.
@@ -25,6 +27,7 @@ def append_list():
         entry_item_code.delete(0,'end')
         entry_item_quantity.delete(0,'end')
         counters['total_entries'] += 1
+        print("INFO: List appended successfully")
         
 def pack_window(): # Fills the window with buttons, labels and text entries
     Button(main_window, text="Quit",command=main_window.destroy, width=8, bg='#FF605C', fg='white') .grid(column=0,row=0)
@@ -42,47 +45,52 @@ def pack_window(): # Fills the window with buttons, labels and text entries
     Label(main_window, font='bold',text="  Item code  ").grid(column=6,row=5)
     Label(main_window, font='bold',text="  Item quantity  ").grid(column=8,row=5)
     Label(main_window, font='bold',text="  Row").grid(column=10,row=5)
+    print("INFO: Window packed successfully")
 
 def error_correction():
     # Initialize error count to 0 and refresh text box labels to default colour (black).
-    missing_inputs = 0
-    non_int_inputs = 0
+    error_inputs = 0
     Label(main_window, fg='black', text="Name") .place(x=170,y=0)
     Label(main_window, fg='black', text="Receipt number") .place(x=118,y=25)
     Label(main_window, fg='black', text="Item code") .place(x=148,y=50)
     Label(main_window, fg='black', text="Quantity of item").place(x=115,y=75)
-
+    print("INFO: Error correction finished")
 
     # If an integer input has a alphabet character prompt an errorbox and mark input box green. 
     if str(entry_receipt_number.get()).isdigit() == False:
-        non_int_inputs = 1
+        error_inputs = 1
+        print("ERROR: entry_receipt_number.get failed to append due to input including a non numerical character")
         Label(main_window, fg='green', text="Receipt number") .place(x=118,y=25)
     if str(entry_item_code.get()).isdigit() == False:
-        non_int_inputs = 1
+        error_inputs = 1
+        print("ERROR: entry_item_code.get failed to append due to input including a non numerical character")
         Label(main_window, fg='green', text="Item code") .place(x=148,y=50)
     if str(entry_item_quantity.get()).isdigit() == False:
-        non_int_inputs = 1
+        error_inputs = 1
+        print("ERROR: entry_item_quantity.get failed to append due to input including a non numerical character")
         Label(main_window, fg='green', text="Quantity of item").place(x=115,y=75)
     
     # If the length of the string of an input is 0, or in simpler terms if there is nothing in an input box then prompt an errorbox and mark input box red.
     if len(entry_client_name.get()) == 0:
-        missing_inputs = 1
+        error_inputs = 1
+        print("ERROR: entry_client_name.get failed to append due to lack of input")
         Label(main_window, fg='red', text="Name") .place(x=170,y=0)
-    if len(entry_receipt_number.get()) == 0:
-        missing_inputs = 1
+    if len(entry_receipt_number.get()) !=7:
+        error_inputs = 1
+        print("ERROR: entry_receipt_number.get failed to append due to lack of input / wrong input length (should be 7 digits long)")
         Label(main_window, fg='red', text="Receipt number") .place(x=118,y=25)
-    if len(entry_item_code.get()) == 0:
-        missing_inputs = 1
+    if len(entry_item_code.get()) !=4:
+        error_inputs = 1
+        print("ERROR: entry_item_code.get failed to append due to lack of input / wrong input length (should be 4 digits long)")
         Label(main_window, fg='red', text="Item code") .place(x=148,y=50)
-    if len(entry_item_quantity.get()) == 0:
-        missing_inputs = 1
+    if len(entry_item_quantity.get()) == 0 or len(entry_item_quantity.get()) > 3 :
+        error_inputs = 1
+        print("ERROR: entry_item_quantity.get failed to append due to lack of input / wrong input length should be 3 or less (999 max)")
         Label(main_window, fg='red', text="Quantity of item").place(x=115,y=75)
     # If an error is found through the check it will prompt one of these error boxes. 
     # It will mark a different colour according to the error type.
-    if missing_inputs == 1:
-        messagebox.showerror('Inventory program error', 'Error: missing input. Errors highlighed in red')
-    if non_int_inputs == 1:
-        messagebox.showerror('Inventory program error', 'Error: non integer input. Errors highlighted in green')
+    if error_inputs == 1:
+        messagebox.showerror('Inventory program error', 'Error: missing input or non correct input length. input length errors highlighed in red, non integer input errors highlighted in green')
     else:
         append_list()
 def delete_row():
@@ -98,15 +106,13 @@ def delete_row():
     Label(main_window, text="                           ").grid(column=8,row=name_count+7)
     Label(main_window, text="                           ").grid(column=10,row=name_count+7)
     print_variables()
-
+    print("INFO: Row deleted")
 # Initialize input boxes, tk window elements and optional window geometry.
 # Uncomment window geometry and resizable options for the older interface size (deprecated). 
 counters = {'total_entries':0,'name_count':0}
 inventory_details = []
 main_window = Tk()
 main_window.title('Stock inventory')
-#main_window.geometry('600x300')
-#main_window.resizable(False, True)
 entry_client_name = Entry(main_window, width=38)
 entry_client_name.place(x=220,y=0)
 entry_receipt_number = Entry(main_window, width=38)
