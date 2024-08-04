@@ -1,0 +1,38 @@
+* {
+    margin: 0px
+}
+
+header h1 {
+    color: white;
+}
+
+header {
+    height: 20vh;/*vh=viewport height,*/
+    background-image: url(https://images.pexels.com/photos/736230/pexels-photo-736230.jpeg?cs=srgb&dl=pexels-jonaskakaroto-736230.jpg&fm=jpg);
+    background-size: 100% 100%;
+}   
+
+nav {
+    background-color: brown;
+    height: 10vh;
+    color: white;
+}
+
+main {
+    background-color: antiquewhite;
+    min-height: 50vh;
+    background-image: url(https://cdn.discordapp.com/attachments/758266073761447986/1267314828058296383/20200210_200034.jpg?ex=66a85668&is=66a704e8&hm=297b188ea41b5369481c6bdb1b0bac9ae1dad0760349cfa08e06a7a5b93f0107&);
+    background-size: 100% 100%;
+    color: white;
+}
+
+footer {
+    color: blue;
+    background-color: yellowgreen;
+    border: solid blue 2px;
+    padding: 20px;
+        }
+footer p {
+    text-align: center;
+    font-size: 24px;
+}
